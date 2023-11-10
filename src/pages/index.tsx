@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { RootState } from '@/redux/store';
 import { useSelector } from 'react-redux';
+import UserForm from '@/components/UserForm';
 
 export default function Home() {
   const [newUserClicked, setNewUserClicked] = useState(false);
@@ -20,6 +21,7 @@ export default function Home() {
           >
             New User
           </button>
+          {newUserClicked ? <UserForm /> : ''}
         </div>
       </div>
     </main>
