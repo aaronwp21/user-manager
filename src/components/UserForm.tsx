@@ -4,6 +4,10 @@ import { useForm } from 'react-hook-form';
 
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { userType } from '@/types';
+
+import { newUser } from '@/redux/features/user/userSlice';
+import { useDispatch } from 'react-redux';
 
 const schema = yup.object().shape({
   name: yup.string().max(100).required(),
@@ -15,7 +19,9 @@ const defaults = {
   email: '',
 };
 
-function UserForm({ submitHandler }: any) {
+function UserForm() {
+  const dispatch = useDispatch();
+
   const {
     handleSubmit,
     formState: { errors, isValid, isDirty, isSubmitting },
@@ -27,9 +33,10 @@ function UserForm({ submitHandler }: any) {
     defaultValues: defaults,
   });
 
-  let submitFn = (vals: any) => {
+  let submitFn = (vals: userType) => {
     reset();
-    submitHandler(vals);
+    console.log(vals)
+    dispatch(newUser(vals));
   };
 
   return (

@@ -7,6 +7,8 @@ export default function Home() {
   const [newUserClicked, setNewUserClicked] = useState(false);
   const users = useSelector((state: RootState) => state.user.users);
 
+  console.log(users);
+
   return (
     <main className="h-screen flex items-center justify-center px-4 min-w-[400px]">
       <div className="bg-sky-500 h-[50vh] w-[50%] min-w-[370px] min-h-[400px] rounded-lg flex items-center justify-center">
@@ -21,9 +23,14 @@ export default function Home() {
           >
             New User
           </button>
-          {newUserClicked ? <UserForm /> : ''}
+          {newUserClicked ? (
+            <UserForm />
+          ) : (
+            ''
+          )}
         </div>
       </div>
+      <p>{users.length}</p>
     </main>
   );
 }
