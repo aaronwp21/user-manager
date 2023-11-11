@@ -15,3 +15,14 @@ test('Loads form on new user button click', async () => {
 
   expect(screen.getByTestId('user-form-element')).toHaveTextContent('Submit')
 })
+
+test('Reset button works', async () => {
+  render(<Provider store={store}><UserForm /></Provider>)
+
+  await userEvent.type(screen.getByPlaceholderText('Name...'), 'Test')
+  await userEvent.type(screen.getByPlaceholderText('Email...'), 'Test@email.com')
+  await userEvent.click(screen.getByText('Reset'))
+
+  expect(screen.getByPlaceholderText('Name...')).toHaveValue('')
+  expect(screen.getByPlaceholderText('Email...')).toHaveValue('')
+})
