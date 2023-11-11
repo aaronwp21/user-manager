@@ -40,7 +40,7 @@ function UserForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitFn)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(submitFn)} className="flex flex-col gap-4" data-testid="user-form-element">
       <div>
         <input
           className="p-2 text-black"
