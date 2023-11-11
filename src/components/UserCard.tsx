@@ -1,8 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
-import { userType } from '@/types';
 
-function UserCard({name, email}: userType) {
+import { useDispatch } from 'react-redux';
+import { removeUser } from '@/redux/features/user/userSlice';
+
+type UserCardProps = {
+  name: string;
+  email: string;
+  index: number;
+};
+
+function UserCard({ name, email, index }: UserCardProps) {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex items-center gap-4 border-2 p-2">
       <Image
@@ -18,7 +28,8 @@ function UserCard({name, email}: userType) {
         alt="Delete"
         height={25}
         width={25}
-        className='cursor-pointer'
+        className="cursor-pointer"
+        onClick={() => dispatch(removeUser(index))}
       />
     </div>
   );

@@ -24,10 +24,10 @@ export default function Home() {
           New User
         </button>
         <div>{newUserClicked ? <UserForm /> : ''}</div>
-        <div className="bg-sky-500 h-[50vh] w-[50%] min-w-[370px] min-h-[400px] rounded-lg flex items-center justify-center">
+        <div className="bg-sky-500 h-[50vh] w-[50vw] min-w-[370px] min-h-[400px] rounded-lg flex items-center justify-center">
           <div className="flex flex-col gap-4">
             {users.map((user, i) => (
-              <UserCard key={i} name={user.name} email={user.email} />
+              <UserCard key={i} name={user.name} email={user.email} index={i} />
             ))}
           </div>
         </div>
