@@ -26,3 +26,15 @@ test('Reset button works', async () => {
   expect(screen.getByPlaceholderText('Name...')).toHaveValue('')
   expect(screen.getByPlaceholderText('Email...')).toHaveValue('')
 })
+
+test('Submit button adds new user to screen', async () => {
+  render(<Provider store={store}><Home /></Provider>)
+
+  await userEvent.click(screen.getByText('New User'))
+  await userEvent.type(screen.getByPlaceholderText('Name...'), 'Test')
+  await userEvent.type(screen.getByPlaceholderText('Email...'), 'Test@email.com')
+  await userEvent.click(screen.getByText('Submit'))
+
+  expect(screen.getByText('Test')).toHaveTextContent('Test')
+  expect(screen.getByText('Test@email.com')).toHaveTextContent('Test@email.com')
+})
